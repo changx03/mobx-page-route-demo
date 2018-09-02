@@ -1,6 +1,6 @@
 import { action, computed, observable } from 'mobx';
 import { delay, getCartItems } from '../utils';
-import WorkflowStep from './WorkflowStep';
+import { WorkflowStep } from './WorkflowStep';
 
 export class ShowCartStep extends WorkflowStep {
   @observable.shallow

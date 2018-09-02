@@ -48,7 +48,8 @@ export class HistoryTracker {
     const routes = this.routes;
     this.page = Object.keys(routes).find(key => {
       const path = routes[key];
-      return path.startWith(pathname);
+      console.log(path);
+      return path.startsWith(pathname);
     });
   }
 }

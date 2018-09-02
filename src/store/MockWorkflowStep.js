@@ -1,5 +1,5 @@
 import { delay } from '../utils';
-import WorkflowStep from './WorkflowStep';
+import { WorkflowStep } from './WorkflowStep';
 
 export class MockWorkflowStep extends WorkflowStep {
   getLoadOperation() {

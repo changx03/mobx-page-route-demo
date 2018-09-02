@@ -1,6 +1,6 @@
 import { runInAction } from 'mobx';
 import { delay } from '../utils';
-import MockWorkflowStep from './MockWorkflowStep';
+import { MockWorkflowStep } from './MockWorkflowStep';
 
 export { CheckoutWorkflow } from './CheckoutWorkflow';
 export { HistoryTracker } from './history';
