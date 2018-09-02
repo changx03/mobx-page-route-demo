@@ -19,7 +19,7 @@ export default class App extends Component {
     return (
       <Provider store={workflow}>
         <Paper elevation={2} style={{ padding: 20 }}>
-          <Router history={workflow.track.history}>
+          <Router history={workflow.tracker.history}>
             <Switch>
               <Route
                 exact

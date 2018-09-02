@@ -22,6 +22,7 @@ export class TemplateStepComponent extends React.Component {
         <Observer>
           {() => {
             const { step } = this.props.store;
+            console.log(this.props.store);
 
             return (
               <OperationStatus
