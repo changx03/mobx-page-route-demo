@@ -1,4 +1,4 @@
-import createHistory from 'history/createHashHistory';
+import createHashHistory from 'history/createHashHistory';
 import { action, observable, reaction } from 'mobx';
 
 export class HistoryTracker {
@@ -10,7 +10,8 @@ export class HistoryTracker {
   page = null;
 
   constructor() {
-    this.history = createHistory();
+    this.history = createHashHistory();
+
     reaction(
       () => this.page,
       page => {
@@ -27,6 +28,7 @@ export class HistoryTracker {
     this.unsubscribe = this.history.listen(location => {
       this.identifyRoute(location);
     });
+
     this.identifyRoute(this.history.location);
   }
 
@@ -37,8 +39,9 @@ export class HistoryTracker {
   @action
   setPage(key) {
     if (!this.routes[key]) {
-      throw new Error(`Invalid page: ${key}`);
+      throw new Error(`Invalid Page: ${key}`);
     }
+
     this.page = key;
   }
 
@@ -46,9 +49,9 @@ export class HistoryTracker {
   identifyRoute(location) {
     const { pathname } = location;
     const routes = this.routes;
+
     this.page = Object.keys(routes).find(key => {
       const path = routes[key];
-      console.log(path);
       return path.startsWith(pathname);
     });
   }

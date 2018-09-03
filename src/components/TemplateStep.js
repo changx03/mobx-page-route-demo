@@ -3,7 +3,7 @@ import { inject, Observer } from 'mobx-react';
 import React, { Fragment } from 'react';
 import { OperationStatus } from './index';
 
-@inject(stores => ({ store: stores.store }))
+@inject('store')
 export class TemplateStepComponent extends React.Component {
   static defaultProps = {
     title: 'Step Title',
@@ -19,10 +19,10 @@ export class TemplateStepComponent extends React.Component {
         <Typography variant={'headline'} style={{ textAlign: 'center' }}>
           {title}
         </Typography>
+
         <Observer>
           {() => {
             const { step } = this.props.store;
-            console.log(this.props.store);
 
             return (
               <OperationStatus
@@ -34,10 +34,12 @@ export class TemplateStepComponent extends React.Component {
             );
           }}
         </Observer>
+
         <Grid justify={'center'} container>
           <Observer>
             {() => {
               const { step } = this.props.store;
+
               return (
                 <Button
                   variant={'raised'}

@@ -3,8 +3,7 @@ import { delay, getCartItems } from '../utils';
 import { WorkflowStep } from './WorkflowStep';
 
 export class ShowCartStep extends WorkflowStep {
-  @observable.shallow
-  items = [];
+  @observable.shallow items = [];
 
   @computed
   get itemTotal() {
@@ -14,7 +13,6 @@ export class ShowCartStep extends WorkflowStep {
   @action
   async getLoadOperation() {
     const items = await getCartItems();
-    console.log(this);
     this.items = items;
   }
 

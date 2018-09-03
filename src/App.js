@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import { Provider } from 'mobx-react';
-import { CheckoutWorkflow } from './store';
+import { CheckoutWorkflow } from './store/CheckoutWorkflow';
 import { Paper } from '@material-ui/core';
 import {
   ShowCart,
@@ -16,6 +16,7 @@ const workflow = new CheckoutWorkflow();
 
 export default class App extends Component {
   render() {
+    // console.log('[workflow.tracker]', workflow.tracker);
     return (
       <Provider store={workflow}>
         <Paper elevation={2} style={{ padding: 20 }}>
@@ -32,10 +33,10 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route exact path={'/track'} component={ShowCart} />
+              <Route exact path={'/cart'} component={ShowCart} />
               <Route
                 exact
-                path={'/cart'}
+                path={'/payment'}
                 component={() => (
                   <TemplateStepComponent
                     title="Choose Payment"
@@ -46,7 +47,7 @@ export default class App extends Component {
               />
               <Route
                 exact
-                path={'/payment'}
+                path={'/confirm'}
                 component={() => (
                   <TemplateStepComponent
                     title="Your order is confirmed"
@@ -57,7 +58,7 @@ export default class App extends Component {
               />
               <Route
                 exact
-                path={'/confirm'}
+                path={'/track'}
                 component={() => (
                   <TemplateStepComponent
                     title="Track your order"
