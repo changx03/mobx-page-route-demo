@@ -1,4 +1,4 @@
-import createHashHistory from 'history/createHashHistory';
+import createHistory from 'history/createBrowserHistory';
 import { action, observable, reaction } from 'mobx';
 
 export class HistoryTracker {
@@ -10,12 +10,13 @@ export class HistoryTracker {
   page = null;
 
   constructor() {
-    this.history = createHashHistory();
+    this.history = createHistory();
 
     reaction(
       () => this.page,
       page => {
         const route = this.routes[page];
+        
         if (route) {
           this.history.push(route);
         }

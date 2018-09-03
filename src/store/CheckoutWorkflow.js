@@ -1,29 +1,11 @@
-import { action, autorun, observable, reaction, runInAction, when } from 'mobx';
-import { delay } from '../utils';
+import { action, autorun, observable, reaction, when } from 'mobx';
+import { routes } from '../routes';
+import { ConfirmStep } from './ConfirmStep';
 import { HistoryTracker } from './history';
-import { MockWorkflowStep } from './MockWorkflowStep';
+import { PaymentStep } from './PaymentStep';
+import { ShoppingStep } from './ShoppingStep';
 import { ShowCartStep } from './ShowCartStep';
-
-class ShoppingStep extends MockWorkflowStep {}
-
-class PaymentStep extends MockWorkflowStep {}
-
-class ConfirmStep extends MockWorkflowStep {}
-
-class TrackStep extends MockWorkflowStep {
-  async getMainOperation() {
-    await delay(400);
-    runInAction(() => (this.workflow.currentStep = 'shopping'));
-  }
-}
-
-const routes = {
-  shopping: '/',
-  cart: '/cart',
-  payment: '/payment',
-  confirm: '/confirm',
-  track: '/track',
-};
+import { TrackStep } from './TrackStep';
 
 export class CheckoutWorkflow {
   static steps = [
@@ -39,7 +21,7 @@ export class CheckoutWorkflow {
 
   @observable
   currentStep = null;
-  
+
   @observable.ref
   step = null;
 
