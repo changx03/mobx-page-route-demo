@@ -20,17 +20,17 @@ export class CheckoutWorkflow {
   nextStepPromise = null;
 
   @observable
-  currentStep = null;
+  currentStepName = null;
 
   @observable.ref
   step = null;
 
   constructor() {
     this.tracker.startListening(routes);
-    this.currentStep = this.tracker.page;
+    this.currentStepName = this.tracker.page;
 
     autorun(() => {
-      const currentStep = this.currentStep;
+      const currentStep = this.currentStepName;
       const stepIdx = CheckoutWorkflow.steps.findIndex(
         i => i.name === currentStep
       );
@@ -43,7 +43,7 @@ export class CheckoutWorkflow {
     reaction(
       () => this.tracker.page,
       page => {
-        this.currentStep = page;
+        this.currentStepName = page;
       }
     );
   }
@@ -67,6 +67,6 @@ export class CheckoutWorkflow {
       return;
     }
 
-    this.currentStep = CheckoutWorkflow.steps[nextStepIdx].name;
+    this.currentStepName = CheckoutWorkflow.steps[nextStepIdx].name;
   }
 }
